@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  id: Int!
+  email: String!
+  description: String
+  avatar: String
+  dateOfBirth: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type SignResponse {
+  accessToken: String!
+  user: Auth!
+}
+
+type UserResponse {
+  user: Auth!
+}
+
+type Query {
+  sayHello: String!
+  viewInfo(id: Float!): UserResponse!
+}
+
+type Mutation {
+  signup(signUpInput: SignUpInput!): SignResponse!
+  signin(signInInput: SignInInput!): SignResponse!
+  updateUser(updateUserInput: UpdateUserInput!, avatar: Upload): UserResponse!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+  confirmPassword: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  description: String
+  dateOfBirth: DateTime
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
